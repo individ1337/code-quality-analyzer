@@ -1,8 +1,6 @@
 """
 CodeQuality Analyzer - Core analysis engine
-
-Анализирует Python код, собирает метрики и оценивает качество.
-Использует AST (Abstract Syntax Tree) для парсинга кода.
+Python 3.12+ optimized
 """
 
 import ast
@@ -14,17 +12,7 @@ from dataclasses import dataclass
 
 @dataclass
 class FunctionInfo:
-    """
-    Информация о функции.
-    
-    Attributes:
-        name: Имя функции
-        file_path: Путь к файлу
-        line_start: Номер строки начала
-        line_end: Номер строки конца
-        num_lines: Количество строк
-        has_docstring: Есть ли докстринг
-    """
+    """Информация о функции"""
     name: str
     file_path: str
     line_start: int
@@ -35,17 +23,7 @@ class FunctionInfo:
 
 @dataclass
 class ClassInfo:
-    """
-    Информация о классе.
-    
-    Attributes:
-        name: Имя класса
-        file_path: Путь к файлу
-        line_start: Номер строки начала
-        line_end: Номер строки конца
-        num_lines: Количество строк
-        has_docstring: Есть ли докстринг
-    """
+    """Информация о классе"""
     name: str
     file_path: str
     line_start: int
@@ -56,39 +34,16 @@ class ClassInfo:
 
 @dataclass
 class ImportInfo:
-    """
-    Информация об импорте.
-    
-    Attributes:
-        module: Имя модуля
-        file_path: Путь к файлу
-        line: Номер строки
-    """
+    """Информация об импорте"""
     module: str
     file_path: str
     line: int
 
 
 class CodeAnalyzer:
-    """
-    Главный класс анализатора Python кода.
-    
-    Сканирует все .py файлы в директории, собирает информацию
-    о функциях, классах и импортах, вычисляет метрики и оценку качества.
-    
-    Example:
-        >>> analyzer = CodeAnalyzer("./my_project")
-        >>> analyzer.analyze()
-        >>> analyzer.print_report()
-    """
+    """Анализирует Python код, используя AST (Python 3.12)"""
     
     def __init__(self, root_path: str):
-        """
-        Инициализация анализатора.
-        
-        Args:
-            root_path: Путь к корневой директории проекта
-        """
         self.root_path = Path(root_path).resolve()
         self.functions: List[FunctionInfo] = []
         self.classes: List[ClassInfo] = []
@@ -97,17 +52,7 @@ class CodeAnalyzer:
         self.total_files = 0
 
     def analyze(self) -> Dict:
-        """
-        Запускает полный анализ проекта.
-        
-        Returns:
-            Dict: Словарь со статистикой проекта
-            
-        Example:
-            >>> stats = analyzer.analyze()
-            >>> print(stats['total_files'])
-            42
-        """
+        """Запускает полный анализ проекта"""
         print(f"🔍 Анализ: {self.root_path}")
         print(f"🐍 Python версия: {sys.version.split()[0]}")
         
@@ -120,12 +65,7 @@ class CodeAnalyzer:
         return self._get_summary()
 
     def _analyze_file(self, file_path: Path):
-        """
-        Анализирует один Python файл.
-        
-        Args:
-            file_path: Путь к файлу
-        """
+        """Анализирует один файл"""
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -143,13 +83,7 @@ class CodeAnalyzer:
             print(f"⚠️ Ошибка в {file_path}: {e}")
 
     def _extract_imports(self, tree: ast.AST, file_path: Path):
-        """
-        Извлекает все импорты из AST.
-        
-        Args:
-            tree: AST дерево
-            file_path: Путь к файлу
-        """
+        """Извлекает импорты"""
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
                 for alias in node.names:
@@ -167,13 +101,7 @@ class CodeAnalyzer:
                     ))
 
     def _extract_functions_and_classes(self, tree: ast.AST, file_path: Path):
-        """
-        Извлекает функции и классы из AST.
-        
-        Args:
-            tree: AST дерево
-            file_path: Путь к файлу
-        """
+        """Извлекает функции и классы"""
         for node in ast.walk(tree):
             if isinstance(node, ast.FunctionDef):
                 end_line = node.end_lineno if hasattr(node, 'end_lineno') else node.lineno
@@ -197,12 +125,7 @@ class CodeAnalyzer:
                 ))
 
     def _get_summary(self) -> Dict:
-        """
-        Собирает сводную статистику.
-        
-        Returns:
-            Dict: Словарь со всеми метриками
-        """
+        """Собирает сводную статистику"""
         total_funcs = len(self.functions)
         total_classes = len(self.classes)
         
@@ -219,10 +142,7 @@ class CodeAnalyzer:
         }
 
     def print_report(self):
-        """
-        Выводит красивый отчёт в консоль.
-        Использует rich для форматирования.
-        """
+        """Выводит отчет в консоль"""
         s = self._get_summary()
         
         print("\n" + "="*70)
@@ -257,15 +177,11 @@ class CodeAnalyzer:
         print("\n" + "="*70)
 
     def _calculate_quality_score(self, stats: Dict) -> int:
-        """
-        Вычисляет оценку качества кода от 0 до 100.
+        """Вычисляет оценку качества кода (0-100)"""
+        # Если нет файлов → сразу 0 баллов
+        if stats['total_files'] == 0:
+            return 0
         
-        Args:
-            stats: Словарь со статистикой
-            
-        Returns:
-            int: Оценка качества (0-100)
-        """
         score = 100
         
         if stats['functions_total'] > 0:
