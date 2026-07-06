@@ -1,8 +1,9 @@
 # CodeQuality Analyzer
 
-Анализируй качество Python кода за секунды.
+**Анализируй качество Python кода за секунды!**  
+**Analyze Python code quality in seconds!**
 
-## Как установить
+## Установка / Installation
 
 1. Клонируй репозиторий:
 git clone https://github.com/individ1337/code-quality-analyzer.git
@@ -16,20 +17,26 @@ source venv/bin/activate
 pip install -r requirements.txt
 pip install -e .
 
-## Как пользоваться
+## Как использовать / How to use
 
-Просто запусти в терминале:
+# Анализировать текущую папку / Analyze current folder
 
 code-analyzer ./
 
-Анализатор покажет отчёт по всем Python файлам в папке.
+# Анализировать другой проект / Analyze another project
 
-## Команды
+code-analyzer /путь/к/проекту
 
-code-analyzer ./              - обычный отчёт
-code-analyzer ./ --verbose    - подробный отчёт
-code-analyzer ./ --json       - отчёт в JSON формате
-code-analyzer --help          - справка
+Примеры / Examples:
+
+code-analyzer ~/Desktop/my-project          # Linux/Mac
+code-analyzer C:\Users\Имя\Documents\my-project  # Windows
+
+## Дополнительные режимы / Additional modes
+
+code-analyzer ./ --verbose   # Подробный отчёт / Verbose output
+code-analyzer ./ --json      # Вывод в JSON / JSON output
+code-analyzer --help         # Справка / Help
 
 ## Что показывает
 
@@ -39,19 +46,24 @@ code-analyzer --help          - справка
 - Оценку качества от 0 до 100
 - Рекомендации по улучшению
 
-## Пример отчёта
+## Пример отчёта / Example output
 
-📁 Файлов: 8
-📝 Строк кода: 346
-🔧 Функций: 9
-📚 Классов: 4
-🎯 Оценка качества: 100/100
-✅ Отлично! Код в хорошем состоянии.
+======================================================================
+📊  ОТЧЕТ О КАЧЕСТВЕ КОДА / CODE QUALITY REPORT
+======================================================================
 
-## Лицензия
+📁  Файлов / Files: 8
+📝  Строк кода / Lines of code: 346
+
+🔧  Функции / Functions: 9 (все с докстрингами / all with docstrings)
+📚  Классы / Classes: 4 (все с докстрингами / all with docstrings)
+📦  Импортов / Imports: 13
+
+----------------------------------------------------------------------
+🎯  Оценка качества / Quality Score: 100/100
+   ✅ Отлично! Код в хорошем состоянии. / Excellent! Code is in good shape.
+======================================================================
+
+## Лицензия / License
 
 MIT
-
-## Ссылка
-
-https://github.com/individ1337/code-quality-analyzer
