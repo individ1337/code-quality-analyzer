@@ -7,7 +7,8 @@ from rich.panel import Panel
 from rich.table import Table
 from rich import box
 from pathlib import Path
-from analyzer.core import CodeAnalyzer  # <-- Убрали .. 
+from analyzer.core import CodeAnalyzer
+from report.generator import generate_html_report
 
 console = Console()
 
@@ -15,7 +16,8 @@ console = Console()
 @click.argument('path', type=click.Path(exists=True))
 @click.option('--verbose', '-v', is_flag=True, help='Подробный вывод')
 @click.option('--json', '-j', is_flag=True, help='Вывод в формате JSON')
-def analyze(path: str, verbose: bool, json: bool):
+@click.option('--html', '-h', help='Сгенерировать HTML-отчёт (укажите путь к файлу)')
+def analyze(path: str, verbose: bool, json: bool, html: str):
     """Анализирует качество Python кода."""
     
     console.print(Panel.fit(
@@ -26,9 +28,18 @@ def analyze(path: str, verbose: bool, json: bool):
     analyzer = CodeAnalyzer(path)
     analyzer.analyze()
     
+    # Сохраняем оценку качества
+    stats = analyzer._get_summary()
+    quality_score = analyzer._calculate_quality_score(stats)
+    stats['quality_score'] = quality_score
+    
+    # Передаём оценку в генератор
+    if html:
+        generate_html_report(analyzer, html, quality_score)
+    
     if json:
         import json as jsonlib
-        print(jsonlib.dumps(analyzer._get_summary(), indent=2, ensure_ascii=False))
+        print(jsonlib.dumps(stats, indent=2, ensure_ascii=False))
     else:
         analyzer.print_report()
         
