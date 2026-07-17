@@ -31,50 +31,23 @@ CodeQuality Analyzer — это инструмент командной стро
 
 ---
 
+## 🚀 Быстрый старт
+
+> **Примечание:** Проект разработан для Python 3.8+ и работает на Linux, MacOS и Windows.
+
+---
+
 ## 📋 Все команды
 
-code-analyzer ./ Анализ текущей папки
-code-analyzer /путь/к/проекту Анализ конкретного проекта
-code-analyzer ./ --verbose Подробный вывод со списком функций
-code-analyzer ./ --json Вывод результатов в формате JSON
-code-analyzer ./ --html report.html Генерация HTML-отчёта
-code-analyzer --help Показать справку
+code-analyzer ./	Анализ текущей папки
+code-analyzer /путь/к/проекту	Анализ конкретного проекта
+code-analyzer ./ --verbose	Подробный вывод со списком функций
+code-analyzer ./ --json	Вывод результатов в формате JSON
+code-analyzer ./ --html report.html	Генерация HTML-отчёта
+code-analyzer --help	Показать справку
 
 ---
 
-## 🗂️ Где мои данные?
-
-Анализатор не сохраняет ваши данные на диск. Все отчёты генерируются "на лету" и выводятся в консоль или по указанному вами пути (для HTML-файла).
-
----
-
-### 1. Клонируйте репозиторий
-```bash
-git clone https://github.com/individ1337/code-quality-analyzer.git
-cd code-quality-analyzer
-
-### 2. Создайте виртуальное окружение
-```bash
-python3 -m venv venv
-source venv/bin/activate  # для Linux/Mac
-# venv\Scripts\activate   # для Windows
-
-### 3. Установите зависимости и проект
-```bash
-pip install -r requirements.txt
-pip install -e .
-
-### 4. Запустите анализ!
-Теперь вы можете анализировать любой Python-проект:
-```bash
-code-analyzer /путь/к/вашему/проекту
-
----
-
-📜 Лицензия
+## 📜 Лицензия
 
 Этот проект распространяется под лицензией MIT. Подробности в файле LICENSE.
-
-
-
-
