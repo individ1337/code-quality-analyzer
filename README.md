@@ -1,65 +1,80 @@
 # 🔍 CodeQuality Analyzer
 
-**Анализируй качество Python кода за секунды!**  
-**Analyze Python code quality in seconds!**
-
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Version](https://img.shields.io/badge/version-0.1.0-orange)
-![Quality](https://img.shields.io/badge/Quality-100%2F100-brightgreen)
+_Мгновенный статический анализ Python-кода для повышения его качества и читаемости._
 
 ---
 
-## 📖 О проекте / About
-
-**Русский:**  
-CodeQuality Analyzer — это инструмент командной строки для статического анализа Python кода. Он помогает разработчикам оценивать качество кода, находить слабые места и улучшать читаемость проектов.
-
-**English:**  
-CodeQuality Analyzer is a command-line tool for static analysis of Python code. It helps developers evaluate code quality, find weak spots, and improve project readability.
+CodeQuality Analyzer — это инструмент командной строки, который помогает разработчикам быстро оценить качество кода, найти слабые места и получить конкретные метрики для улучшения проекта. Просто укажите путь к папке и получите детальный отчёт.
 
 ---
 
-## ✨ Возможности / Features
+## ✨ Почему CodeQuality Analyzer?
 
-| Русский | English |
-|---------|---------|
-| 📊 Анализ структуры (функции, классы, импорты) | 📊 Structure analysis (functions, classes, imports) |
-| 📏 Метрики кода (строки, средняя длина) | 📏 Code metrics (lines, average length) |
-| 📝 Проверка докстрингов | 📝 Docstring checking |
-| 🎯 Оценка качества от 0 до 100 | 🎯 Quality score from 0 to 100 |
-| 🎨 Красивые цветные отчёты | 🎨 Beautiful colored reports |
-| 📋 Поддержка JSON и verbose режимов | 📋 JSON and verbose modes support |
-| 📄 Генерация HTML-отчётов | 📄 HTML report generation |
+- **Мгновенная оценка:** Получите общую оценку качества вашего кода по шкале от 0 до 100 за секунды.
+- **Детальные метрики:** Анализ структуры (функции, классы, импорты), подсчёт строк, проверка докстрингов.
+- **Удобные форматы:** Цветной вывод в терминал, структурированный JSON или готовый HTML-отчёт для шеринга.
+- **Простота использования:** Одна команда для анализа проекта — никакой сложной настройки.
 
 ---
 
-## 📋 Все команды / All commands
+## 📸 Скриншоты
 
-Команда / Command	                  Описание / Description
-code-analyzer ./	                  Анализ текущей папки / Analyze current folder
-code-analyzer /путь/к/проекту	      Анализ конкретного проекта / Analyze specific project
-code-analyzer ./ --verbose	          Подробный вывод со списком функций / Verbose output with function list
-code-analyzer ./ --json	              Вывод в формате JSON / JSON output
-code-analyzer ./ --html report.html	  Генерация HTML-отчёта / Generate HTML report
-code-analyzer --help	              Показать справку / Show help
+### Основной отчёт в терминале
+![Терминальный отчёт](assets/terminal_report.png)
+
+*Пример цветного вывода с оценкой качества и метриками.*
+
+### HTML-отчёт в браузере
+![HTML-отчёт](assets/html_report.png)
+
+*Визуализация результатов в удобном HTML-формате для детального анализа.*
 
 ---
 
-## 🚀 Установка / Installation
+## 📋 Все команды
 
+code-analyzer ./ Анализ текущей папки
+code-analyzer /путь/к/проекту Анализ конкретного проекта
+code-analyzer ./ --verbose Подробный вывод со списком функций
+code-analyzer ./ --json Вывод результатов в формате JSON
+code-analyzer ./ --html report.html Генерация HTML-отчёта
+code-analyzer --help Показать справку
+
+---
+
+## 🗂️ Где мои данные?
+
+Анализатор не сохраняет ваши данные на диск. Все отчёты генерируются "на лету" и выводятся в консоль или по указанному вами пути (для HTML-файла).
+
+---
+
+### 1. Клонируйте репозиторий
 ```bash
-# 1. Клонируй репозиторий
 git clone https://github.com/individ1337/code-quality-analyzer.git
 cd code-quality-analyzer
 
-# 2. Создай виртуальное окружение
+### 2. Создайте виртуальное окружение
+```bash
 python3 -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
+source venv/bin/activate  # для Linux/Mac
+# venv\Scripts\activate   # для Windows
 
-# 3. Установи зависимости
+### 3. Установите зависимости и проект
+```bash
 pip install -r requirements.txt
-
-# 4. Установи проект
 pip install -e .
+
+### 4. Запустите анализ!
+Теперь вы можете анализировать любой Python-проект:
+```bash
+code-analyzer /путь/к/вашему/проекту
+
+---
+
+📜 Лицензия
+
+Этот проект распространяется под лицензией MIT. Подробности в файле LICENSE.
+
+
+
+
